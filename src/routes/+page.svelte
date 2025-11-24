@@ -23,7 +23,7 @@
 </script>
 
 <!-- unser Template / HTML-Teil der Seite bzw. der Komponente -->
-<h1 class="text-3xl">Our Rabbits</h1>
+<h1 class="text-3xl">Our Rabbits by Niklas</h1>
 
 <div class="grid w-[200px] grid-cols-[32px_1fr_32px_32px] items-end">
 	<div>Nr.</div>
