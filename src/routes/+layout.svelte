@@ -3,7 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 
 	let { children } = $props();
-	let theme = $state('cyberpunk');
+	let theme = $state('valentine');
 </script>
 
 <svelte:head>
