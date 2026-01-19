@@ -9,31 +9,28 @@ export let store = $state({
 	rabbits: [],
 	listRabbits: async () => {
 		store.rabbits = await pb.collection('rabbits').getFullList({
-			expand:"rabbithole"
-	});
+			expand: "rabbithole"
+		});
 	},
 
-	editRabbit: async (id, newName) => {
-		let editedRabbit = {
-			name: newName
-		};
+	editRabbit: async (id, rabbit) => {
 		try {
-			const record = await pb.collection('rabbits').update(id, editedRabbit);
+			const record = await pb.collection('rabbits').update(id, rabbit);
 			if (!response.ok) {
 				alert(await response.text());
 			}
 		} catch (error) {
-			console.log('FEHLER');
+			console.log('FEHLER!');
 		}
 		store.listRabbits();
 	},
 	deleteRabbit: async function (id) {
-		
-await pb.collection('rabbits').delete(id);
+		await pb.collection('rabbits').delete(id);
 		store.listRabbits();
 	},
-	addRabbit: async (name, rabbithole) => {
-		const response = await pb.collection('rabbits').create({ name , rabbithole:rabbithole });
+	addRabbit: async (rabbit) => {
+		const response = await pb.collection('rabbits').create(rabbit);
+		store.listRabbits();
 		console.log(response);
 	}
 });
