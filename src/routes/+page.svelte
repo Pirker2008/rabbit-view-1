@@ -1,6 +1,7 @@
 <script>
 	import RabbitForm from '$lib/components/RabbitForm.svelte';
-	import { serverAddress, store } from '$lib/store.svelte.js';
+	import UserAuth from '$lib/components/UserAuth.svelte';
+	import { pb, serverAddress, store } from '$lib/store.svelte.js';
 	import Icon from '@iconify/svelte';
 
 	let currentRabbitId = $state();
@@ -14,17 +15,17 @@
 		} else {
 		}
 	}
-
-	
 </script>
 
-<!-- unser Template / HTML-Teil der Seite bzw. der Komponente -->
-<h1 class="text-3xl">Our Rabbits by Niklas</h1>
 
-<div class="grid w-[200px] grid-cols-[32px_1fr_1fr_32px_32px] items-end">
-	<div>Nr.</div>
-	<div>Name</div>
-	<div>Hasenbau</div>
+<!-- unser Template / HTML-Teil der Seite bzw. der Komponente -->
+<h1 class="text-3xl font-bold">Our Rabbits</h1>
+
+<div class="grid w-[200px] grid-cols-[32px_1fr_1fr_1fr_32px_32px] items-end">
+	<div class="font-bold">Nr.</div>
+	<div class="font-bold">Name</div>
+	<div class="font-bold">Hasenbau</div>
+	<div class="font-bold">Farbe</div>
 	<div></div>
 	<div></div>
 
@@ -36,14 +37,18 @@
 		{:else}
 		<div></div>
 		{/if}
+
+		{#if rabbit.expand.FurColor}
+		<div class="pr-3">{rabbit.expand.FurColor.name}</div>
+		{:else}
+		<div></div>
+		{/if}
+		
 		<a href={"/"+rabbit.id}>
-		<div class="pr-3">
-			<button
-				
-				class="cursor-pointer"><Icon icon="carbon:edit" width="16" height="16" /></button
-			>
-		</div>
-	</a>
+			<div class="pr-3">
+				<button class="cursor-pointer"><Icon icon="carbon:edit" width="16" height="16" /></button>
+			</div>
+		</a>
 		<div>
 			<button onclick={() => store.deleteRabbit(rabbit.id)} class="cursor-pointer text-red-500"
 				>x</button
@@ -54,4 +59,4 @@
 
 
 
-<a href="/add"><button class="btn btn-primary">New Rabbit!</button></a>
+<a href="/add"><button class="btn btn-primary" > New Rabbit!</button></a>
